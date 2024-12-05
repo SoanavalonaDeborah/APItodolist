@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo_api</title>
+</head>
+<body>
+    <main>
+        <div class="container">
+          <div class="form">
+            <h1>Signup</h1>
+      
+            {% if messages %}
+            <div class="error-messages">
+                {% for message in messages %}
+                <p class="error">{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+      
+            <form method="POST">
+              {% csrf_token %}
+              <p>
+                <label for="username">Username:</label>
+                <input id="username" type="text" name="username">
+              </p>
+      
+              <p>
+                <label for="password">Password:</label>
+                <input id="password" type="password" name="password">
+              </p>
+      
+              <button type="submit">Validate</button>
+            </form>
+            <p class="link">Already have an account ?<a href="{% url 'login' %}">Click here</a></p>
+          </div>
+        </div>
+      </main>
+</body>
+</html>
