@@ -1,11 +1,9 @@
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
 
 from .models import TasksModel
 from .serializers import TasksSerializer
-
 
 
 class TaskListView(generics.ListCreateAPIView):
@@ -26,8 +24,6 @@ class TaskListView(generics.ListCreateAPIView):
             serializer.save(owner=request.user)  # Associe la tâche à l'utilisateur connecté.
             return Response(serializer.data, status=status.HTTP_201_CREATED)  # Retourne la tâche créée.
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  # Retourne les erreurs en cas de problème.
-    
-
 
 
 class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):

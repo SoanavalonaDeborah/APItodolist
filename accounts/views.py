@@ -17,7 +17,7 @@ def signup(request):
             # Créer un nouvel utilisateur si le nom n'est pas pris
             user = User.objects.create_user(username=username, password=password)
             login(request, user)
-            return redirect('index')
+            return redirect('tasks-list-create')
         login(request, user)
         return redirect('index')
     return render(request, 'accounts/signup.html')
@@ -30,7 +30,7 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
-            return redirect('index')
+            return redirect('tasks-list-create')
         else:
             messages.error(request, 'Username or password incorrect.')
     return render(request, 'accounts/login.html')
@@ -38,6 +38,6 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('index')
+    return redirect('login')
 
 
